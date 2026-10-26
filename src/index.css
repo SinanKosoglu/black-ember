@@ -1,0 +1,55 @@
+:root {
+  --bg: #141210;
+  --surface: #1e1b18;
+  --text: #ece6df;
+  --muted: #a39a90;
+  --ember: #e0662c;
+  --line: #3a342e;
+
+  color-scheme: dark;
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 16px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  letter-spacing: 0.02em;
+}
+
+.lead {
+  margin: 4px 0 0;
+  color: var(--ember);
+  font-size: 1.125rem;
+}
+
+.story {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  max-width: 62ch;
+}
+
+.story h2 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
