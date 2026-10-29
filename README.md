@@ -72,3 +72,11 @@ Form gönderilince veri bir webhook adresine POST edilir. İki form aynı adrese
 - Sayfalar: menü, yönlendirme, ana sayfa bölümleri, yasal metinler.
 
 Test verisinde gerçek kişi bilgisi kullanılmaz: "Test Kullanıcı", `0500 000 00 00`, `test@ornek.com`.
+
+## GitHub ve MCP
+
+Depo: [github.com/SinanKosoglu/black-ember](https://github.com/SinanKosoglu/black-ember). İlk yükleme `gh repo create ... --push` ile yapıldı (2026-10-29).
+
+Claude Code'a GitHub'ın resmî MCP sunucusu bağlı. MCP (Model Context Protocol), Claude'un GitHub gibi dış servislerle kendi araçları üzerinden konuşmasını sağlar. Bağlantı `claude mcp list` ya da Claude Code içinde `/mcp` ile kontrol edilir; anahtar kullanıcının Claude Code ayarlarında durur, depoya girmez.
+
+Bu bölüm, Claude'un MCP üzerinden doğrudan GitHub'a attığı commit'le eklendi (yerelde `git commit` / `git push` kullanılmadı). Değişiklik yerel kopyaya `git pull` ile alındı.
