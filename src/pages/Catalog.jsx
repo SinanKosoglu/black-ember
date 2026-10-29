@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import CategoryFilter from '../components/CategoryFilter'
 import ProductCard from '../components/ProductCard'
+import ProductDialog from '../components/ProductDialog'
+import useProductDialog from '../components/useProductDialog'
 import { products } from '../data/products'
 
 export default function Catalog() {
   const [category, setCategory] = useState('all')
-  // Sipariş ve haber verme pencereleri formlar eklenince buraya bağlanacak.
-  const [, setActive] = useState(null)
-  const open = (kind, product) => setActive({ kind, product })
+  const { active, open, close } = useProductDialog()
 
   const visible = category === 'all' ? products : products.filter(p => p.category === category)
 
@@ -25,6 +25,7 @@ export default function Catalog() {
           />
         ))}
       </div>
+      <ProductDialog active={active} onClose={close} />
     </>
   )
 }

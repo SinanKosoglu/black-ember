@@ -1,6 +1,7 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import ProductCard from '../components/ProductCard'
+import ProductDialog from '../components/ProductDialog'
+import useProductDialog from '../components/useProductDialog'
 import { products } from '../data/products'
 import { materials, works } from '../data/showcase'
 
@@ -14,9 +15,7 @@ const STEPS = [
 const featured = products.filter(p => p.featured)
 
 export default function Home() {
-  // Sipariş ve haber verme pencereleri formlar eklenince buraya bağlanacak.
-  const [, setActive] = useState(null)
-  const open = (kind, product) => setActive({ kind, product })
+  const { active, open, close } = useProductDialog()
 
   return (
     <>
@@ -90,6 +89,8 @@ export default function Home() {
           ))}
         </ul>
       </section>
+
+      <ProductDialog active={active} onClose={close} />
     </>
   )
 }
