@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { validateOrder } from '../lib/validation'
 import { orderPayload, sendWebhook } from '../lib/webhook'
 
@@ -37,7 +36,7 @@ export default function OrderForm({ product, send = sendWebhook }) {
   }
 
   if (status === 'sent') {
-    return <p role="status">Siparişiniz alındı. En kısa sürede sizinle iletişime geçeceğiz.</p>
+    return <p role="status">Teşekkürler! Siparişiniz alındı. En kısa sürede sizinle iletişime geçeceğiz.</p>
   }
 
   return (
@@ -82,7 +81,9 @@ export default function OrderForm({ product, send = sendWebhook }) {
         <label>
           <input name="consent" type="checkbox" checked={values.consent} onChange={change} />
           <span>
-            <Link to="/kvkk">KVKK Aydınlatma Metni</Link>'ni okudum, onaylıyorum.
+            <a href="/kvkk" target="_blank" rel="noopener noreferrer">
+              KVKK Aydınlatma Metni
+            </a>'ni okudum, onaylıyorum.
           </span>
         </label>
         {errors.consent && <p className="field-error">{errors.consent}</p>}

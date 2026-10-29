@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { validateNotify } from '../lib/validation'
 import { notifyPayload, sendWebhook } from '../lib/webhook'
 
@@ -30,7 +29,7 @@ export default function NotifyForm({ product, send = sendWebhook }) {
   }
 
   if (status === 'sent') {
-    return <p role="status">Ürün gelince size haber vereceğiz.</p>
+    return <p role="status">Teşekkürler! Ürün gelince size haber vereceğiz.</p>
   }
 
   return (
@@ -49,7 +48,9 @@ export default function NotifyForm({ product, send = sendWebhook }) {
         <label>
           <input name="consent" type="checkbox" checked={values.consent} onChange={change} />
           <span>
-            <Link to="/kvkk">KVKK Aydınlatma Metni</Link>'ni okudum, onaylıyorum.
+            <a href="/kvkk" target="_blank" rel="noopener noreferrer">
+              KVKK Aydınlatma Metni
+            </a>'ni okudum, onaylıyorum.
           </span>
         </label>
         {errors.consent && <p className="field-error">{errors.consent}</p>}

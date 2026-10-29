@@ -18,8 +18,9 @@ export default function Privacy() {
 
       <h2>Verilerin iletilmesi</h2>
       <p>
-        Formu gönderdiğinizde bilgileriniz bir webhook aracılığıyla atölyenin kendi kayıt sayfasına
-        iletilir. Sitenin kendi sunucusu ya da veritabanı yoktur; tarayıcınızda da bu bilgiler saklanmaz.
+        Formu gönderdiğinizde bilgileriniz bir webhook aracılığıyla üçüncü taraf bir webhook
+        hizmetine gönderilir. Bu hizmet bilgileri atölye adına alır ve sunucuları yurt dışında olabilir.
+        Bu hizmet dışında kimseyle paylaşılmaz. Sitenin kendi sunucusu ya da veritabanı yoktur; tarayıcınızda da bu bilgiler saklanmaz.
         Verileriniz reklam ya da analiz amacıyla kullanılmaz.
       </p>
 

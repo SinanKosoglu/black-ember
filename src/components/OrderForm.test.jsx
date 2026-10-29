@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { MemoryRouter } from 'react-router-dom'
 import OrderForm from './OrderForm'
 import { orderPayload } from '../lib/webhook'
 
@@ -17,11 +16,7 @@ const product = {
 
 const setup = send => {
   const user = userEvent.setup()
-  render(
-    <MemoryRouter>
-      <OrderForm product={product} send={send} />
-    </MemoryRouter>,
-  )
+  render(<OrderForm product={product} send={send} />)
   return user
 }
 
@@ -38,7 +33,9 @@ const fill = async (user, { boxes = true } = {}) => {
 test('yaş uyarısı ve KVKK bağlantısı formda görünür', () => {
   setup(vi.fn())
   expect(screen.getByText('Sipariş 18 yaş ve üzeri içindir.')).toBeInTheDocument()
-  expect(screen.getByRole('link', { name: 'KVKK Aydınlatma Metni' })).toHaveAttribute('href', '/kvkk')
+  const link = screen.getByRole('link', { name: 'KVKK Aydınlatma Metni' })
+  expect(link).toHaveAttribute('href', '/kvkk')
+  expect(link).toHaveAttribute('target', '_blank')
 })
 
 test('onaylar işaretlenmeden gönderilmez', async () => {
@@ -77,7 +74,7 @@ test("geçerli girişte webhook'a doğru veri gider", async () => {
       quantity: '1',
     }),
   )
-  expect(await screen.findByText(/Siparişiniz alındı/)).toBeInTheDocument()
+  expect(await screen.findByText(/Teşekkürler! Siparişiniz alındı/)).toBeInTheDocument()
 })
 
 test('çift tıklama tek istek gönderir', async () => {

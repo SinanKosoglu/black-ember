@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { MemoryRouter } from 'react-router-dom'
 import NotifyForm from './NotifyForm'
 import { notifyPayload } from '../lib/webhook'
 
@@ -17,11 +16,7 @@ const product = {
 
 const setup = send => {
   const user = userEvent.setup()
-  render(
-    <MemoryRouter>
-      <NotifyForm product={product} send={send} />
-    </MemoryRouter>,
-  )
+  render(<NotifyForm product={product} send={send} />)
   return user
 }
 
@@ -29,6 +24,13 @@ test('telefon ve adet alanı yoktur', () => {
   setup(vi.fn())
   expect(screen.queryByLabelText('Telefon')).not.toBeInTheDocument()
   expect(screen.queryByLabelText('Adet')).not.toBeInTheDocument()
+})
+
+test('KVKK bağlantısı yeni sekmede açılır', () => {
+  setup(vi.fn())
+  const link = screen.getByRole('link', { name: 'KVKK Aydınlatma Metni' })
+  expect(link).toHaveAttribute('href', '/kvkk')
+  expect(link).toHaveAttribute('target', '_blank')
 })
 
 test('onay işaretlenmeden gönderilmez', async () => {
@@ -52,5 +54,5 @@ test("geçerli girişte webhook'a doğru veri gider", async () => {
   expect(send).toHaveBeenCalledWith(
     notifyPayload({ product, name: 'Test Kullanıcı', email: 'test@ornek.com' }),
   )
-  expect(await screen.findByText(/Ürün gelince size haber vereceğiz/)).toBeInTheDocument()
+  expect(await screen.findByText(/Teşekkürler! Ürün gelince size haber vereceğiz/)).toBeInTheDocument()
 })

@@ -24,7 +24,11 @@ export default function Kvkk() {
       <p>Sipariş için sözleşmenin kurulması ve ifası; ürün bildirimi için açık rızanız. Formdaki onay kutusunu işaretleyerek rıza verirsiniz.</p>
 
       <h2>Aktarım</h2>
-      <p>Form bilgileriniz bir webhook ile atölyenin kayıt sayfasına iletilir. Üçüncü kişilerle paylaşılmaz ve yurt dışına başka bir amaçla aktarılmaz.</p>
+      <p>
+        Form bilgileriniz bir webhook ile üçüncü taraf bir webhook hizmetine gönderilir. Bu hizmet,
+        bilgileri atölye adına alır ve sunucuları yurt dışında olabilir; yani verileriniz yurt dışına
+        aktarılabilir. Bu hizmet dışında kimseyle paylaşılmaz.
+      </p>
 
       <h2>Haklarınız (KVKK md. 11)</h2>
       <ul>
