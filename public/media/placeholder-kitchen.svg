@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Mutfak bıçağı">
+  <rect width="400" height="300" fill="#1e1b18"/>
+  <rect x="8" y="8" width="384" height="284" fill="none" stroke="#3a342e" stroke-width="2"/>
+  <path d="M90 150 L270 128 Q300 140 270 158 Z" fill="#a39a90"/><rect x="270" y="134" width="60" height="18" rx="6" fill="#e0662c"/>
+  <text x="200" y="262" fill="#a39a90" font-family="Georgia, serif" font-size="16" text-anchor="middle">Mutfak bıçağı · görsel yakında</text>
+</svg>

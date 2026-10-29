@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Kın derisi">
+  <rect width="400" height="300" fill="#1e1b18"/>
+  <rect x="8" y="8" width="384" height="284" fill="none" stroke="#3a342e" stroke-width="2"/>
+  <path d="M150 90 L250 90 L235 200 L165 200 Z" fill="#6b4a32"/>
+  <text x="200" y="262" fill="#a39a90" font-family="Georgia, serif" font-size="16" text-anchor="middle">Kın derisi · görsel yakında</text>
+</svg>
