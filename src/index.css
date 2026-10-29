@@ -314,3 +314,22 @@ button.secondary {
   color: var(--ember);
   font-size: 0.9rem;
 }
+
+.catalog-qr {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 40px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.catalog-qr p {
+  margin: 0 0 4px;
+}
+
+.catalog-qr-url {
+  word-break: break-all;
+}

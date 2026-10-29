@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import CatalogQr from '../components/CatalogQr'
 import CategoryFilter from '../components/CategoryFilter'
 import ProductCard from '../components/ProductCard'
 import ProductDialog from '../components/ProductDialog'
@@ -25,6 +26,7 @@ export default function Catalog() {
           />
         ))}
       </div>
+      <CatalogQr url={`${window.location.origin}/katalog`} />
       <ProductDialog active={active} onClose={close} />
     </>
   )
