@@ -1,0 +1,37 @@
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import ProductCard from './ProductCard'
+
+const product = {
+  id: 'test-knife',
+  name: 'Test bıçağı',
+  category: 'kitchen',
+  price: 2400,
+  stock: 2,
+  materials: 'Karbon çeliği, ceviz sap',
+  image: '/media/placeholder-kitchen.svg',
+  featured: false,
+}
+
+test('stoktaki ürün fiyatı ve Sipariş ver düğmesini gösterir', async () => {
+  const user = userEvent.setup()
+  const onOrder = vi.fn()
+  render(<ProductCard product={product} onOrder={onOrder} onNotify={vi.fn()} />)
+  expect(screen.getByRole('heading', { name: 'Test bıçağı' })).toBeInTheDocument()
+  expect(screen.getByText('2.400 TL')).toBeInTheDocument()
+  expect(screen.getByText('Stokta: 2')).toBeInTheDocument()
+  expect(screen.getByRole('img', { name: 'Test bıçağı' })).toHaveAttribute('src', product.image)
+  await user.click(screen.getByRole('button', { name: 'Sipariş ver' }))
+  expect(onOrder).toHaveBeenCalledWith(product)
+})
+
+test('tükenen ürün Gelince haber ver gösterir', async () => {
+  const user = userEvent.setup()
+  const onNotify = vi.fn()
+  const soldOut = { ...product, stock: 0 }
+  render(<ProductCard product={soldOut} onOrder={vi.fn()} onNotify={onNotify} />)
+  expect(screen.getByText('Tükendi')).toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: 'Sipariş ver' })).not.toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: 'Gelince haber ver' }))
+  expect(onNotify).toHaveBeenCalledWith(soldOut)
+})
