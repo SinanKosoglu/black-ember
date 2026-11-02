@@ -22,10 +22,10 @@ npm run build      # yayına hazır dosyalar dist/ klasörüne
 | `/` | Ana sayfa | Tam ekran bıçaklı açılış, öne çıkan 3 ürünün ekran boyu sahneleri (kaydırınca şeritlerle açılır), dövme bannerı, hikâye (ocak, örs, su verme, bileme), 3 örnek iş, malzemeler, kapanış çağrısı |
 | `/katalog` | Katalog | Kategori süzgeci ve ürün sayacı, fiyat ve stoklu ürün kartları (tıklayınca ürün sayfası), sipariş ve haber verme formları, kataloğun QR kodu |
 | `/katalog/<ürün>` | Ürün sayfası | Örn. `/katalog/sef-bicagi`. Arkada sabit fotoğraf; açıklama, nasıl yapıldığı, malzeme ve ölçüler, bakım, diğer bıçaklar; altta hep duran fiyat ve Sipariş ver / Gelince haber ver düğmesi. 9 ürünün hepsinde var |
-
-**Tasarım:** sen-knife sitesinden (Awwwards, 2026) esinlenilen, koyu temalı "sahne" düzeni. Ayrıntılar: [sahne tasarımı](docs/superpowers/specs/2026-11-02-sahne-tasarimi-design.md), [ürün sayfası](docs/superpowers/specs/2026-11-02-urun-detay-design.md). Yazı tipi Jost, projeye gömülü. Animasyonlar kütüphanesiz (CSS ve IntersectionObserver); cihazda "hareketi azalt" açıksa kapanır.
 | `/gizlilik` | Gizlilik Politikası | Formların topladığı veriler ve nasıl iletildiği |
 | `/kvkk` | KVKK Aydınlatma Metni | Veri sorumlusu, işlenen veriler, amaç, hukuki sebep, aktarım, haklar |
+
+**Tasarım:** sen-knife sitesinden (Awwwards, 2026) esinlenilen, koyu temalı "sahne" düzeni. Ayrıntılar: [sahne tasarımı](docs/superpowers/specs/2026-11-02-sahne-tasarimi-design.md), [ürün sayfası](docs/superpowers/specs/2026-11-02-urun-detay-design.md). Yazı tipi Jost, projeye gömülü. Animasyonlar kütüphanesiz (CSS ve IntersectionObserver); cihazda "hareketi azalt" açıksa kapanır.
 
 Görseller `public/media/` altında, Unsplash'ten alınmış **temsili** fotoğraflar (WebP). Atölyenin kendi bıçaklarının fotoğrafları gelince ürünlerde onlar kullanılacak. Kaynaklar: [Görsel kaynakları](#görsel-kaynakları).
 
