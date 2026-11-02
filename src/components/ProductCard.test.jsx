@@ -9,7 +9,7 @@ const product = {
   price: 2400,
   stock: 2,
   materials: 'Karbon çeliği, ceviz sap',
-  image: '/media/placeholder-kitchen.svg',
+  image: '/media/category-kitchen.webp',
   featured: false,
 }
 

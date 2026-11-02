@@ -9,9 +9,9 @@ test('beş bölüm görünür', () => {
   }
 })
 
-test('yapım videosu yer tutucusu var', () => {
+test('açılışta bıçak fotoğrafı var', () => {
   renderAt('/')
-  expect(screen.getByRole('img', { name: 'Yapım videosu yakında' })).toBeInTheDocument()
+  expect(screen.getByRole('img', { name: 'Koyu zeminde çapraz duran bir şef bıçağı' })).toHaveAttribute('src', '/media/hero-knife.webp')
 })
 
 test('hikâye dört adımı ve su vermeyi açıklar', () => {

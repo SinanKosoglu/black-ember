@@ -1,4 +1,4 @@
-// Katalogdaki ürünler. Görseller şimdilik kategori başına bir yer tutucu.
+// Katalogdaki ürünler. Görseller şimdilik kategori başına bir temsili fotoğraf (kaynaklar README).
 export const CATEGORIES = [
   { id: 'kitchen', label: 'Mutfak' },
   { id: 'outdoor', label: 'Kamp ve av' },
@@ -10,7 +10,7 @@ export function categoryLabel(id) {
   return CATEGORIES.find(c => c.id === id)?.label ?? ''
 }
 
-const image = category => `/media/placeholder-${category}.svg`
+const image = category => `/media/category-${category}.webp`
 
 export const products = [
   {

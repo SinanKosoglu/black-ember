@@ -30,3 +30,8 @@ test('alt bilgide 18 yaş notu ve yasal bağlantılar var', () => {
   expect(screen.getByRole('link', { name: 'Gizlilik' })).toHaveAttribute('href', '/gizlilik')
   expect(screen.getByRole('link', { name: 'KVKK' })).toHaveAttribute('href', '/kvkk')
 })
+
+test('alt bilgide fotoğrafların temsili olduğu yazar', () => {
+  renderAt('/')
+  expect(screen.getByText('Fotoğraflar temsilidir.')).toBeInTheDocument()
+})

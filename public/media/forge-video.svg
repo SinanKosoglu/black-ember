@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Yapım videosu">
-  <rect width="400" height="300" fill="#1e1b18"/>
-  <rect x="8" y="8" width="384" height="284" fill="none" stroke="#3a342e" stroke-width="2"/>
-  <circle cx="200" cy="140" r="60" fill="#e0662c" opacity="0.35"/><path d="M185 115 L225 140 L185 165 Z" fill="#ece6df"/>
-  <text x="200" y="262" fill="#a39a90" font-family="Georgia, serif" font-size="16" text-anchor="middle">Yapım videosu · görsel yakında</text>
-</svg>

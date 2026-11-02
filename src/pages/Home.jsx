@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <>
       <section className="hero">
-        <img className="hero-video" src="/media/forge-video.svg" alt="Yapım videosu yakında" />
+        <img className="hero-video" src="/media/hero-knife.webp" alt="Koyu zeminde çapraz duran bir şef bıçağı" />
         <h1>Black Ember</h1>
         <p className="lead">Her bıçak ocakta tek tek dövülür.</p>
         <Link to="/katalog" className="button-link">

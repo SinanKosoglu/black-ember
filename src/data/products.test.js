@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs'
 import { CATEGORIES, categoryLabel, products } from './products'
 import { materials, works } from './showcase'
 
@@ -44,4 +45,12 @@ test('kategori etiketleri Türkçe ve sıralı', () => {
 test('3 örnek iş ve 3 malzeme', () => {
   expect(works).toHaveLength(3)
   expect(materials).toHaveLength(3)
+})
+
+test('bütün görseller public/media altında var olan WebP dosyaları', () => {
+  const paths = [...products, ...works, ...materials].map(item => item.image)
+  for (const path of paths) {
+    expect(path).toMatch(/^\/media\/.+\.webp$/)
+    expect(existsSync(`public${path}`)).toBe(true)
+  }
 })

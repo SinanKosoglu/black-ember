@@ -24,7 +24,7 @@ npm run build      # yayına hazır dosyalar dist/ klasörüne
 | `/gizlilik` | Gizlilik Politikası | Formların topladığı veriler ve nasıl iletildiği |
 | `/kvkk` | KVKK Aydınlatma Metni | Veri sorumlusu, işlenen veriler, amaç, hukuki sebep, aktarım, haklar |
 
-Görseller şimdilik `public/media/` altında SVG yer tutucu; gerçek fotoğraflar sonra eklenecek.
+Görseller `public/media/` altında, Unsplash'ten alınmış **temsili** fotoğraflar (WebP). Atölyenin kendi bıçaklarının fotoğrafları gelince ürünlerde onlar kullanılacak. Kaynaklar: [Görsel kaynakları](#görsel-kaynakları).
 
 ## Klasörler
 
@@ -80,3 +80,22 @@ Depo: [github.com/SinanKosoglu/black-ember](https://github.com/SinanKosoglu/blac
 Claude Code'a GitHub'ın resmî MCP sunucusu bağlı. MCP (Model Context Protocol), Claude'un GitHub gibi dış servislerle kendi araçları üzerinden konuşmasını sağlar. Bağlantı `claude mcp list` ya da Claude Code içinde `/mcp` ile kontrol edilir; anahtar kullanıcının Claude Code ayarlarında durur, depoya girmez.
 
 Bu bölüm, Claude'un MCP üzerinden doğrudan GitHub'a attığı commit'le eklendi (yerelde `git commit` / `git push` kullanılmadı). Değişiklik yerel kopyaya `git pull` ile alındı.
+
+## Görsel kaynakları
+
+Fotoğraflar [Unsplash Lisansı](https://unsplash.com/license) ile ücretsiz kullanılıyor; atıf zorunlu değil ama emeğe saygı için burada. Yüz ve marka logosu içeren, ayrıca kelebek bıçak ya da yaylı çakı gösteren adaylar seçilmedi.
+
+| Dosya | Nerede | Fotoğrafçı | Kaynak |
+|---|---|---|---|
+| `hero-knife.webp` | Ana sayfa açılışı | Octavian-Dan Craciun | [unsplash.com/photos/yypwvERG6XM](https://unsplash.com/photos/yypwvERG6XM) |
+| `forge-banner.webp` | Dövme bannerı | Martin Baron | [unsplash.com/photos/W6vcyRfkCZs](https://unsplash.com/photos/W6vcyRfkCZs) |
+| `category-kitchen.webp` | Mutfak ürünleri | Blend Archive | [unsplash.com/photos/gzAqZM831kc](https://unsplash.com/photos/gzAqZM831kc) |
+| `category-outdoor.webp` | Kamp ve av ürünleri | Ali Kazal | [unsplash.com/photos/QKCo0sBAm58](https://unsplash.com/photos/QKCo0sBAm58) |
+| `category-folding.webp` | Çakılar | Hugo Carle | [unsplash.com/photos/FYJ4a9EdAY8](https://unsplash.com/photos/FYJ4a9EdAY8) |
+| `category-care.webp` | Bakım ürünleri | Sander Hallaste | [unsplash.com/photos/4j_qFna2u4Y](https://unsplash.com/photos/4j_qFna2u4Y) |
+| `work-1.webp` | Örnek iş: düğün seti | Andrey Matveev | [unsplash.com/photos/OtlyMBQC3ow](https://unsplash.com/photos/OtlyMBQC3ow) |
+| `work-2.webp` | Örnek iş: Şam çeliği av bıçağı | True Knife | [unsplash.com/photos/e7A4f_gJvaI](https://unsplash.com/photos/e7A4f_gJvaI) |
+| `work-3.webp` | Örnek iş: yenilenen satır | Nicholas Grande | [unsplash.com/photos/eE3SZ9Qd9Hw](https://unsplash.com/photos/eE3SZ9Qd9Hw) |
+| `material-steel.webp` | Malzeme: çelik | Raul Barrios | [unsplash.com/photos/oTSyTtIvuBY](https://unsplash.com/photos/oTSyTtIvuBY) |
+| `material-wood.webp` | Malzeme: sap ahşabı | The Cleveland Museum of Art | [unsplash.com/photos/KKKHaEA4coc](https://unsplash.com/photos/KKKHaEA4coc) |
+| `material-leather.webp` | Malzeme: kın derisi | Felipe Santana | [unsplash.com/photos/xJkTCbtuqAY](https://unsplash.com/photos/xJkTCbtuqAY) |
