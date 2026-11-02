@@ -944,6 +944,249 @@ button.secondary:hover:not(:disabled) {
   }
 }
 
+/* ---------- Ürün detay sayfası ---------- */
+
+/* Alt bilgi, sabit arka plan fotoğrafının üstünde kendi zeminiyle durur */
+.site-footer {
+  position: relative;
+  background: var(--bg);
+}
+
+.product-page {
+  position: relative;
+}
+
+/* Sabit sipariş düğmesi alt bilginin son satırını kapatmasın */
+body:has(.order-bar) .site-footer {
+  padding-bottom: 110px;
+}
+
+.pp-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+.pp-backdrop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: settle 2.4s var(--ease) both;
+}
+
+.pp-backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, color-mix(in srgb, var(--bg) 85%, transparent), transparent 60%),
+    linear-gradient(to right, color-mix(in srgb, var(--bg) 70%, transparent), color-mix(in srgb, var(--bg) 25%, transparent));
+}
+
+.pp-intro {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100svh;
+  min-height: 560px;
+  padding: calc(var(--header-h) + 24px) var(--gutter) 40px;
+}
+
+.pp-title span {
+  animation: rise 1.4s var(--ease) both;
+}
+
+.pp-title .split-b {
+  animation-delay: 0.2s;
+}
+
+.pp-intro-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.pp-lead {
+  margin: 0;
+  max-width: 34ch;
+  font-size: 1.15rem;
+}
+
+.pp-block {
+  display: grid;
+  align-content: center;
+  min-height: 90svh;
+  padding: 120px var(--gutter);
+}
+
+.pp-big {
+  margin: 16px 0 32px;
+  font-size: clamp(2.5rem, 7vw, 6.5rem);
+  font-weight: 450;
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.pp-text {
+  max-width: 42ch;
+  margin: 0 0 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.pp-material {
+  grid-template-columns: minmax(220px, 0.8fr) 1fr;
+  align-items: center;
+  gap: 48px 6vw;
+}
+
+.pp-inset {
+  justify-self: center;
+  width: 100%;
+  max-width: 380px;
+  overflow: hidden;
+}
+
+.pp-inset img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.pp-mid {
+  margin: 16px 0 24px;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+.pp-specs {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--muted);
+}
+
+.pp-specs li {
+  padding: 12px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--muted) 50%, transparent);
+  letter-spacing: 0.04em;
+}
+
+.pp-others {
+  padding: 80px var(--gutter) 120px;
+  background: var(--bg);
+}
+
+.pp-others-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.pp-others h2 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.pp-others ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pp-other {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px 12px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.pp-other .tile-frame {
+  grid-column: 1 / -1;
+}
+
+.pp-other .tile-frame img {
+  aspect-ratio: 4 / 3;
+}
+
+.pp-other:hover img {
+  transform: scale(1.05);
+}
+
+.pp-other-name {
+  font-size: 1.2rem;
+}
+
+.pp-other:hover .pp-other-name {
+  color: var(--ember);
+}
+
+.pp-other-price {
+  color: var(--muted);
+}
+
+/* Altta hep duran fiyat ve sipariş düğmesi */
+.order-bar {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 6px 6px 6px 24px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 75%, transparent);
+  backdrop-filter: blur(10px);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  animation: bar-in 1s var(--ease) 0.6s both;
+}
+
+.order-bar p {
+  margin: 0;
+}
+
+.order-bar-price {
+  font-size: 1.1rem;
+}
+
+.order-bar .product-stock {
+  padding-left: 18px;
+  border-left: 1px solid var(--line);
+}
+
+@keyframes bar-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 24px);
+  }
+}
+
+@media (max-width: 720px) {
+  .pp-material {
+    grid-template-columns: 1fr;
+  }
+
+  .pp-text {
+    margin-left: 0;
+  }
+
+  .order-bar {
+    gap: 12px;
+    padding-left: 18px;
+  }
+}
+
 /* ---------- Hareketi azalt ---------- */
 
 @media (prefers-reduced-motion: reduce) {
