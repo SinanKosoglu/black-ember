@@ -927,6 +927,10 @@ button.secondary:hover:not(:disabled) {
     grid-template-columns: 1fr;
   }
 
+  .hero-image {
+    object-position: 30% 60%;
+  }
+
   .hero-b {
     left: 22vw;
   }

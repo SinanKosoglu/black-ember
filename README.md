@@ -19,8 +19,10 @@ npm run build      # yayına hazır dosyalar dist/ klasörüne
 
 | Adres | Sayfa | İçerik |
 |---|---|---|
-| `/` | Ana sayfa | Yapım videosu (şimdilik yer tutucu), atölyenin hikâyesi (ocak, örs, su verme, bileme), öne çıkan 3 ürün, 3 örnek iş, malzemeler |
-| `/katalog` | Katalog | Kategori süzgeci, fiyat ve stoklu ürün kartları, sipariş ve haber verme formları, kataloğun QR kodu |
+| `/` | Ana sayfa | Tam ekran bıçaklı açılış, öne çıkan 3 ürünün ekran boyu sahneleri (kaydırınca şeritlerle açılır), dövme bannerı, hikâye (ocak, örs, su verme, bileme), 3 örnek iş, malzemeler, kapanış çağrısı |
+| `/katalog` | Katalog | Kategori süzgeci ve ürün sayacı, fiyat ve stoklu ürün kartları, sipariş ve haber verme formları, kataloğun QR kodu |
+
+**Tasarım:** sen-knife sitesinden (Awwwards, 2026) esinlenilen, koyu temalı "sahne" düzeni. Ayrıntılar: [`docs/superpowers/specs/2026-11-02-sahne-tasarimi-design.md`](docs/superpowers/specs/2026-11-02-sahne-tasarimi-design.md). Yazı tipi Jost, projeye gömülü. Animasyonlar kütüphanesiz (CSS ve IntersectionObserver); cihazda "hareketi azalt" açıksa kapanır.
 | `/gizlilik` | Gizlilik Politikası | Formların topladığı veriler ve nasıl iletildiği |
 | `/kvkk` | KVKK Aydınlatma Metni | Veri sorumlusu, işlenen veriler, amaç, hukuki sebep, aktarım, haklar |
 
@@ -31,7 +33,8 @@ Görseller `public/media/` altında, Unsplash'ten alınmış **temsili** fotoğr
 ```
 src/
   pages/        sayfalar (Home, Catalog, Privacy, Kvkk)
-  components/   Header, Footer, ProductCard, ProductImage, CategoryFilter,
+  components/   Header, Footer, ProductCard, ProductActions, ProductImage,
+                FeaturedScene, Reveal, useInView, CategoryFilter,
                 ProductDialog, OrderForm, NotifyForm, CatalogQr
   data/         products.js (ürünler, kategoriler), showcase.js (örnek işler, malzemeler)
   lib/          format.js (fiyat), validation.js (form kontrolü), webhook.js (gönderim)
