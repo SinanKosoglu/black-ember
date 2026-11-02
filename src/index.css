@@ -261,17 +261,44 @@ button.secondary:hover:not(:disabled) {
 
 /* ---------- Katalog ---------- */
 
+.page > .label {
+  margin-bottom: 12px;
+}
+
+.catalog-intro {
+  margin: 0 0 40px;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.catalog-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding: 16px 0;
+  margin-bottom: 40px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
 .category-filter {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 16px 0 24px;
 }
 
 .category-filter button {
+  padding: 6px 18px;
   background: transparent;
   border-color: var(--line);
   color: var(--text);
+}
+
+.category-filter button:hover {
+  background: transparent;
+  border-color: var(--muted);
 }
 
 .category-filter button[aria-pressed='true'] {
@@ -281,8 +308,8 @@ button.secondary:hover:not(:disabled) {
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 56px 24px;
 }
 
 .product-card {
@@ -296,14 +323,48 @@ button.secondary:hover:not(:disabled) {
   margin: 0;
 }
 
-.product-card button {
-  margin-top: auto;
+.product-image-frame {
+  position: relative;
+  margin-bottom: 14px;
+  overflow: hidden;
 }
 
 .product-image {
+  display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
+  transition: transform 1.2s var(--ease);
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.05);
+}
+
+.product-category {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  color: var(--text);
+  text-shadow: 0 1px 6px var(--bg);
+}
+
+.product-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.product-head h3 {
+  font-size: 1.4rem;
+}
+
+.product-price {
+  font-size: 1.1rem;
+  white-space: nowrap;
 }
 
 .product-materials {
@@ -311,12 +372,18 @@ button.secondary:hover:not(:disabled) {
   font-size: 0.9rem;
 }
 
-.product-price {
-  font-size: 1.15rem;
+.product-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 12px;
 }
 
 .product-stock {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  color: var(--ember);
 }
 
 .product-stock.sold-out {
@@ -813,8 +880,7 @@ button.secondary:hover:not(:disabled) {
   list-style: none;
 }
 
-.tile-frame,
-.product-image-frame {
+.tile-frame {
   overflow: hidden;
 }
 

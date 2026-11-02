@@ -14,8 +14,18 @@ export default function Catalog() {
 
   return (
     <>
+      <p className="label">Black Ember</p>
       <h1>Katalog</h1>
-      <CategoryFilter value={category} onChange={setCategory} />
+      <p className="catalog-intro">
+        Her bıçak tek tek yapılır, stoklar sınırlıdır. Tükenen bir model için "Gelince haber ver"
+        deyin; ocaktan yeniden çıkınca size yazalım.
+      </p>
+      <div className="catalog-bar">
+        <CategoryFilter value={category} onChange={setCategory} />
+        <p className="label" aria-live="polite">
+          {visible.length} ürün
+        </p>
+      </div>
       <div className="product-grid">
         {visible.map(product => (
           <ProductCard

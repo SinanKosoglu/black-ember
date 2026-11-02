@@ -56,3 +56,18 @@ test('tükenen üründe Gelince haber ver bildirim formunu açar', async () => {
   expect(within(dialog).getByLabelText('E-posta')).toBeInTheDocument()
   expect(within(dialog).queryByLabelText('Telefon')).not.toBeInTheDocument()
 })
+
+test('sayaç süzgece göre ürün sayısını gösterir', async () => {
+  const user = userEvent.setup()
+  renderAt('/katalog')
+  expect(screen.getByText(`${products.length} ürün`)).toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: 'Bakım' }))
+  const care = products.filter(p => p.category === 'care')
+  expect(screen.getByText(`${care.length} ürün`)).toBeInTheDocument()
+})
+
+test('kartta kategori etiketi görünür', () => {
+  renderAt('/katalog')
+  const product = products.find(p => p.category === 'outdoor')
+  expect(within(cardOf(product)).getByText('Kamp ve av')).toBeInTheDocument()
+})
