@@ -71,3 +71,11 @@ test('kartta kategori etiketi görünür', () => {
   const product = products.find(p => p.category === 'outdoor')
   expect(within(cardOf(product)).getByText('Kamp ve av')).toBeInTheDocument()
 })
+
+test('kart detay sayfasına götürür', async () => {
+  const user = userEvent.setup()
+  renderAt('/katalog')
+  const product = products[1]
+  await user.click(within(cardOf(product)).getByRole('link', { name: product.name }))
+  expect(screen.getByRole('heading', { level: 1, name: product.name })).toBeInTheDocument()
+})

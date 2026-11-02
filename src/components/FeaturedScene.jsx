@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { categoryLabel } from '../data/products'
 import { formatPrice } from '../lib/format'
 import ProductActions from './ProductActions'
@@ -33,7 +34,12 @@ export default function FeaturedScene({ product, number, total, onOrder, onNotif
           {product.description && <p className="scene-desc">{product.description}</p>}
           <p className="product-materials">{product.materials}</p>
           <p className="product-price">{formatPrice(product.price)}</p>
-          <ProductActions product={product} onOrder={onOrder} onNotify={onNotify} />
+          <div className="scene-actions">
+            <ProductActions product={product} onOrder={onOrder} onNotify={onNotify} />
+            <Link to={`/katalog/${product.slug}`} className="more-link">
+              Detay
+            </Link>
+          </div>
         </div>
       </div>
       <p className="label scene-count" aria-hidden="true">

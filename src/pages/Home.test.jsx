@@ -78,3 +78,11 @@ test('kapanış bölümü kataloğa götürür', () => {
   const closing = screen.getByRole('region', { name: 'Sipariş ya da soru için' })
   expect(within(closing).getByRole('link', { name: 'Kataloğa git' })).toHaveAttribute('href', '/katalog')
 })
+
+test('her sahnede detay sayfasına bağlantı var', () => {
+  renderAt('/')
+  for (const product of featured) {
+    const scene = screen.getByRole('region', { name: product.name })
+    expect(within(scene).getByRole('link', { name: 'Detay' })).toHaveAttribute('href', `/katalog/${product.slug}`)
+  }
+})
