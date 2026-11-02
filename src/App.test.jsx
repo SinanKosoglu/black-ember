@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react'
+import { screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { renderAt } from './test-utils'
 
@@ -34,4 +34,16 @@ test('alt bilgide 18 yaş notu ve yasal bağlantılar var', () => {
 test('alt bilgide fotoğrafların temsili olduğu yazar', () => {
   renderAt('/')
   expect(screen.getByText('Fotoğraflar temsilidir.')).toBeInTheDocument()
+})
+
+test('menüde Hikâye ve Örnek işler ana sayfadaki bölümlere gider', () => {
+  renderAt('/katalog')
+  const menu = screen.getByRole('navigation', { name: 'Ana menü' })
+  expect(within(menu).getByRole('link', { name: 'Hikâye' })).toHaveAttribute('href', '/#hikaye')
+  expect(within(menu).getByRole('link', { name: 'Örnek işler' })).toHaveAttribute('href', '/#isler')
+})
+
+test('Katalog düğmesi katalogdayken etkin görünür', () => {
+  renderAt('/katalog')
+  expect(screen.getByRole('link', { name: 'Katalog' })).toHaveClass('pill-link', 'active')
 })
