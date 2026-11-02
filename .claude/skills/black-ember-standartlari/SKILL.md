@@ -13,13 +13,14 @@ Genel kurallar (Türkçe metin, İngilizce kod adı, test, commit, KVKK, yasak b
 - `src/components/` — tekrar kullanılan parçalar; test dosyası yanında (`ProductCard.test.jsx`).
 - `src/data/` — sabit veri: `products.js` (ürünler, `CATEGORIES`, `categoryLabel`), `showcase.js` (örnek işler, malzemeler).
 - `src/lib/` — saf yardımcılar: `format.js` (`formatPrice`), `validation.js`, `webhook.js`.
-- `public/media/` — görseller. Şimdilik SVG yer tutucu; ücretli görsel üretimi yapılmaz.
+- `public/media/` — görseller: Unsplash'ten temsili WebP fotoğraflar, kaynakları README'de. Ücretli görsel üretimi yapılmaz.
 
 ## Bileşen kalıpları
 
 - `export default function Name(...)`; tek sorumluluk. Gerekirse dosya başında tek satırlık Türkçe yorum.
 - **Veri aşağı, olay yukarı.** Kart durumu değiştirmez: `ProductCard({ product, onOrder, onNotify })` düğmeye basılınca olayı bildirir. Pencere durumu sayfada yaşar: `const { active, open, close } = useProductDialog()` ve `<ProductDialog active={active} onClose={close} />`. Türler: `'order'` | `'notify'`.
-- Stok kuralı tek yerde: `stock > 0` → "Sipariş ver", `stock === 0` → "Gelince haber ver" (`ProductCard`). Sipariş formu yalnızca stoktaki ürün için açılır.
+- Stok kuralı tek yerde: `stock > 0` → "Sipariş ver", `stock === 0` → "Gelince haber ver" (`ProductActions`; hem `ProductCard` hem ana sayfadaki `FeaturedScene` kullanır). Sipariş formu yalnızca stoktaki ürün için açılır.
+- Kaydırınca beliren her şey `useInView` ile: `Reveal` sarmalayıcısı ya da `is-in` / `is-waiting` sınıfı. Hareket CSS'te; `prefers-reduced-motion` bloğu hepsini kapatır. IntersectionObserver yoksa içerik baştan görünür (testler buna güvenir).
 - Formlar (`OrderForm`, `NotifyForm`): `send = sendWebhook` prop'u ile enjekte edilir (testte `vi.fn()`); durum `idle | sending | sent | error`; hatalar ilk gönderim denemesinden sonra, alanın altında `.field-error`; `sending` iken düğme pasif. Gönderim hatasında "Gönderilemedi, lütfen tekrar deneyin." ve girilenler korunur.
 - Fiyat her zaman `formatPrice(n)` → `"2.400 TL"`. Kategori etiketi her zaman `categoryLabel(id)`; etiket bileşende yazılmaz.
 - Erişilebilirlik: bölümler `<section aria-labelledby>`, süzgeç düğmeleri `aria-pressed`, pencere `role="dialog" aria-modal="true"`, Escape ile kapanır.
@@ -27,7 +28,7 @@ Genel kurallar (Türkçe metin, İngilizce kod adı, test, commit, KVKK, yasak b
 
 ## Ürün verisi
 
-Her ürün: `{ id, name, category, price, stock, materials, image, featured }`. `category` ∈ `kitchen | outdoor | folding | care`. Çakılar "elle açılır" katlanır bıçaklardır; sustalı, kelebek ve benzeri yasak türler eklenmez — `products.test.js` bunu denetler. Ana sayfada tam 3 `featured` ürün.
+Her ürün: `{ id, name, category, price, stock, materials, image, featured }`; öne çıkanlarda ayrıca sahne için kısa `description`. `category` ∈ `kitchen | outdoor | folding | care`. Çakılar "elle açılır" katlanır bıçaklardır; sustalı, kelebek ve benzeri yasak türler eklenmez — `products.test.js` bunu denetler. Ana sayfada tam 3 `featured` ürün.
 
 ## Testler
 

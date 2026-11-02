@@ -20,6 +20,7 @@ export const products = [
     price: 2400,
     stock: 2,
     materials: 'Karbon çeliği, ceviz sap',
+    description: 'Mutfağın her işini gören bıçak. İnce doğrar, uzun süre keskin kalır.',
     featured: true,
   },
   {
@@ -47,6 +48,7 @@ export const products = [
     price: 3100,
     stock: 1,
     materials: 'Karbon çeliği, meşe sap, deri kın',
+    description: 'Ateş başında ve yürüyüşte. Kalın sırtı odun yarar, deri kını kemerde taşınır.',
     featured: true,
   },
   {
@@ -65,6 +67,7 @@ export const products = [
     price: 1800,
     stock: 4,
     materials: 'Karbon çeliği, ceviz sap, elle açılır',
+    description: 'Cepte taşınan küçük yardımcı. Ağzı elle açılır, ceviz sapı avuca oturur.',
     featured: true,
   },
   {

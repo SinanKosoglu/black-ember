@@ -422,47 +422,482 @@ button.secondary:hover:not(:disabled) {
   word-break: break-all;
 }
 
-/* ---------- Ana sayfa (geçici; sahneler bir sonraki adımda) ---------- */
+/* ---------- Yardımcılar ---------- */
 
-.home {
-  padding-top: var(--header-h);
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
-.hero-video {
-  display: block;
+.reveal {
+  transition:
+    opacity 1s var(--ease),
+    transform 1s var(--ease);
+}
+
+.reveal:not(.is-in) {
+  opacity: 0;
+  transform: translateY(32px);
+}
+
+/* ---------- Ana sayfa: açılış ---------- */
+
+.hero {
+  position: relative;
+  height: 100svh;
+  min-height: 560px;
+  overflow: hidden;
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: 70vh;
+  height: 100%;
   object-fit: cover;
+  object-position: 65% 60%;
+  animation: settle 2.4s var(--ease) both;
 }
 
-.hero,
+.hero-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 70% 75%, color-mix(in srgb, var(--ember) 12%, transparent), transparent 60%),
+    linear-gradient(to right, color-mix(in srgb, var(--bg) 55%, transparent), transparent 60%);
+}
+
+.hero-title {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  font-size: clamp(4rem, 14vw, 13rem);
+  font-weight: 450;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  pointer-events: none;
+}
+
+.hero-title span {
+  position: absolute;
+  animation: rise 1.4s var(--ease) both;
+}
+
+.hero-a {
+  top: 20%;
+  left: 8vw;
+  animation-delay: 0.3s;
+}
+
+.hero-b {
+  top: 50%;
+  left: 42vw;
+  animation-delay: 0.5s;
+}
+
+.hero-side {
+  position: absolute;
+  left: 9vw;
+  bottom: 14%;
+  display: grid;
+  justify-items: start;
+  gap: 20px;
+  animation: rise 1.4s var(--ease) 0.8s both;
+}
+
+.hero-text {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.hero-count,
+.hero-scroll,
+.scene-count {
+  position: absolute;
+  bottom: 28px;
+  color: var(--text);
+}
+
+.hero-count {
+  right: var(--gutter);
+}
+
+.hero-scroll {
+  right: calc(var(--gutter) + 160px);
+}
+
+.hero-scroll::after {
+  content: '';
+  display: inline-block;
+  width: 40px;
+  height: 1px;
+  margin-left: 12px;
+  vertical-align: middle;
+  background: var(--ember);
+  transform-origin: left;
+  animation: pulse-line 2s ease-in-out infinite;
+}
+
+@keyframes settle {
+  from {
+    transform: scale(1.12);
+    opacity: 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-line {
+  0%,
+  100% {
+    transform: scaleX(0.2);
+  }
+  50% {
+    transform: scaleX(1);
+  }
+}
+
+/* ---------- Ana sayfa: öne çıkan ürün sahneleri ---------- */
+
+/* Şerit genişliği animasyonla büyüyebilsin diye özel özellik olarak tanımlı */
+@property --stripe {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+.featured {
+  position: relative;
+}
+
+.scene {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 600px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.scene-media {
+  position: absolute;
+  inset: 0;
+  --stripe: 8.1vw;
+  mask-image: repeating-linear-gradient(to right, #000 0 var(--stripe), transparent var(--stripe) 8vw);
+  transition: --stripe 1.6s var(--ease);
+}
+
+.scene-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 2.4s var(--ease);
+}
+
+.scene.is-waiting .scene-media {
+  --stripe: 0px;
+}
+
+.scene.is-waiting .scene-media img {
+  transform: scale(1.15);
+}
+
+.scene-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, color-mix(in srgb, var(--bg) 92%, transparent), transparent 55%),
+    linear-gradient(to right, color-mix(in srgb, var(--bg) 60%, transparent), transparent 70%);
+}
+
+.scene-body {
+  position: absolute;
+  inset: calc(var(--header-h) + 24px) var(--gutter) 72px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.scene-kicker {
+  color: var(--ember);
+}
+
+.split-title {
+  position: relative;
+  margin: 0;
+  font-size: clamp(3.5rem, 11vw, 10rem);
+  font-weight: 450;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.split-title span {
+  position: absolute;
+  white-space: nowrap;
+  transition:
+    transform 1.3s var(--ease),
+    opacity 1.3s var(--ease);
+}
+
+.split-a {
+  top: 8%;
+  left: 4vw;
+}
+
+.split-b {
+  top: 42%;
+  left: 30vw;
+  transition-delay: 0.15s;
+}
+
+.scene.is-waiting .split-title span {
+  transform: translateY(60px);
+  opacity: 0;
+}
+
+.scene-info {
+  display: grid;
+  justify-items: start;
+  gap: 6px;
+  max-width: 36ch;
+  transition: opacity 1.2s var(--ease) 0.4s;
+}
+
+.scene.is-waiting .scene-info {
+  opacity: 0;
+}
+
+.scene-info p {
+  margin: 0;
+}
+
+.scene-desc {
+  font-size: 1.05rem;
+}
+
+.scene-info button {
+  margin-top: 10px;
+}
+
+.scene-count {
+  right: var(--gutter);
+}
+
+.featured-more {
+  padding: 40px var(--gutter);
+  text-align: right;
+}
+
+.more-link {
+  color: var(--text);
+  letter-spacing: 0.08em;
+  text-underline-offset: 6px;
+  text-decoration-color: var(--ember);
+}
+
+/* ---------- Ana sayfa: dövme bannerı ---------- */
+
+.banner {
+  position: relative;
+  height: 75svh;
+  min-height: 420px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.banner-image {
+  position: absolute;
+  inset: -12% 0;
+  width: 100%;
+  height: 124%;
+  object-fit: cover;
+  object-position: 50% 52%;
+  filter: brightness(0.75);
+}
+
+@supports (animation-timeline: view()) {
+  .banner-image {
+    animation: drift linear both;
+    animation-timeline: view();
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translateY(-8%);
+  }
+  to {
+    transform: translateY(8%);
+  }
+}
+
+.banner-text {
+  position: relative;
+  margin: 0;
+  padding: 0 var(--gutter);
+  font-size: clamp(2rem, 6vw, 5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  text-align: center;
+}
+
+/* ---------- Ana sayfa: hikâye, işler, malzemeler, kapanış ---------- */
+
 .home-section {
-  padding: 32px var(--gutter);
+  padding: 120px var(--gutter) 40px;
+  scroll-margin-top: var(--header-h);
 }
 
-.steps,
+.section-head {
+  margin-bottom: 40px;
+}
+
+.section-head h2 {
+  margin: 8px 0 0;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
+.story {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) 2fr;
+  gap: 0 6vw;
+}
+
+.story-intro {
+  margin: 0 0 48px;
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  line-height: 1.5;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.steps li {
+  padding: 20px 20px 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.steps h3 {
+  margin: 10px 0 6px;
+  font-size: 1.5rem;
+}
+
+.steps p {
+  margin: 0;
+  color: var(--muted);
+}
+
 .tile-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
-  margin: 16px 0 0;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px 24px;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.tile-grid img {
+.tile-frame,
+.product-image-frame {
+  overflow: hidden;
+}
+
+.tile-frame img {
+  display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
+  transition: transform 1.2s var(--ease);
 }
 
-.button-link {
-  display: inline-block;
-  margin-top: 16px;
+.tile-grid li:hover img {
+  transform: scale(1.05);
 }
 
-.more-link {
-  display: inline-block;
-  margin-top: 16px;
-  color: var(--ember);
+.tile-grid h3 {
+  margin: 16px 0 6px;
+  font-size: 1.4rem;
+}
+
+.tile-grid p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.closing {
+  padding: 160px var(--gutter);
+  text-align: center;
+}
+
+.closing h2 {
+  margin: 12px 0 20px;
+  font-size: clamp(2.8rem, 8vw, 7rem);
+}
+
+.closing p:not(.label) {
+  margin: 0 auto 32px;
+  max-width: 48ch;
+  color: var(--muted);
+}
+
+@media (max-width: 720px) {
+  .story {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-b {
+    left: 22vw;
+  }
+
+  .hero-scroll {
+    display: none;
+  }
+
+  .split-b {
+    left: 14vw;
+  }
+}
+
+/* ---------- Hareketi azalt ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .scene {
+    position: relative;
+  }
+
+  .scene .scene-media,
+  .scene.is-waiting .scene-media {
+    --stripe: 8.1vw;
+  }
+
+  .reveal:not(.is-in),
+  .scene.is-waiting .split-title span,
+  .scene.is-waiting .scene-info,
+  .scene.is-waiting .scene-media img {
+    opacity: 1;
+    transform: none;
+  }
 }

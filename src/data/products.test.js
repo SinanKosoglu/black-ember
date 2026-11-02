@@ -54,3 +54,11 @@ test('bütün görseller public/media altında var olan WebP dosyaları', () => 
     expect(existsSync(`public${path}`)).toBe(true)
   }
 })
+
+test('öne çıkan ürünlerin sahne için kısa açıklaması var', () => {
+  for (const p of products.filter(p => p.featured)) {
+    expect(typeof p.description).toBe('string')
+    expect(p.description.length).toBeGreaterThan(20)
+    expect(p.description).not.toMatch(/sustal|kelebek|yaylı/i)
+  }
+})
