@@ -1,5 +1,5 @@
 import { existsSync } from 'node:fs'
-import { CATEGORIES, categoryLabel, products } from './products'
+import { CATEGORIES, categoryLabel, findProductBySlug, products } from './products'
 import { materials, works } from './showcase'
 
 const categoryIds = CATEGORIES.map(c => c.id)
@@ -55,10 +55,30 @@ test('bütün görseller public/media altında var olan WebP dosyaları', () => 
   }
 })
 
-test('öne çıkan ürünlerin sahne için kısa açıklaması var', () => {
-  for (const p of products.filter(p => p.featured)) {
-    expect(typeof p.description).toBe('string')
-    expect(p.description.length).toBeGreaterThan(20)
-    expect(p.description).not.toMatch(/sustal|kelebek|yaylı/i)
+test('her ürünün detay sayfası alanları dolu', () => {
+  for (const p of products) {
+    for (const field of ['description', 'story', 'care']) {
+      expect(typeof p[field]).toBe('string')
+      expect(p[field].length).toBeGreaterThan(20)
+    }
+    expect(Array.isArray(p.specs) && p.specs.length > 0).toBe(true)
+    expect(materials.map(m => m.id)).toContain(p.material)
   }
+})
+
+test('detay metinlerinde yasak bıçak türü yok', () => {
+  for (const p of products) {
+    const text = [p.description, p.story, p.care, ...p.specs].join(' ')
+    expect(text).not.toMatch(/sustal|kelebek|yaylı|düğmeyle açılır/i)
+  }
+})
+
+test("slug'lar benzersiz, Türkçe karaktersiz ve bulunabilir", () => {
+  const slugs = products.map(p => p.slug)
+  expect(new Set(slugs).size).toBe(slugs.length)
+  for (const p of products) {
+    expect(p.slug).toMatch(/^[a-z0-9-]+$/)
+    expect(findProductBySlug(p.slug)).toBe(p)
+  }
+  expect(findProductBySlug('yok-boyle-bicak')).toBeUndefined()
 })
